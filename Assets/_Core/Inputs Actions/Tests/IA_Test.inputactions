@@ -1,0 +1,62 @@
+{
+    "name": "IA_Test",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "a4584500-bc15-48f6-aa5e-31e763fc8334",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "fd25e712-5a9a-466d-a611-b6b9a1bf6b94",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "04f45cf3-5ecf-4538-96d6-ff658a9d7949",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "d2d08df4-4d12-462a-ae12-670122edef82",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f9746721-1c41-461c-a3e0-b72f175632e8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "56c7328f-aa5b-4f50-9d34-fe502774a215",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
