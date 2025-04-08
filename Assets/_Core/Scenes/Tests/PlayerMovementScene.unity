@@ -658,6 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1739385900}
   - component: {fileID: 1739385899}
+  - component: {fileID: 1739385903}
   - component: {fileID: 1739385901}
   - component: {fileID: 1739385902}
   m_Layer: 0
@@ -693,10 +694,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f9746721-1c41-461c-a3e0-b72f175632e8
-    m_ActionName: UI/New action
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1739385902}
@@ -791,6 +788,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedMovement: 5
   _gravityDistanceDetection: 1.01
+--- !u!95 &1739385903
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739385898}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1955822575
 GameObject:
   m_ObjectHideFlags: 3

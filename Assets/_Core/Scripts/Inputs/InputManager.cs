@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OpenIt.Inputs
+namespace AlreadyGone.Inputs
 {
     public class InputManager : MonoBehaviour
     {

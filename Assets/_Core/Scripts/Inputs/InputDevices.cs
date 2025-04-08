@@ -1,4 +1,4 @@
-﻿namespace OpenIt.Inputs
+﻿namespace AlreadyGone.Inputs
 {
     public enum InputDevices
     {

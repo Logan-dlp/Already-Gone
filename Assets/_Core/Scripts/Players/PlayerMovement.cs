@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OpenIt.Players
+namespace AlreadyGone.Players
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour
@@ -22,6 +22,7 @@ namespace OpenIt.Players
         private void FixedUpdate()
         {
             Movement();
+            Debug.Log(_characterController.velocity * _targetMovement);
         }
 
         private void Movement()
