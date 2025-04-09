@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
-namespace OpenIt.Inputs
+namespace AlreadyGone.Inputs
 {
     public class InputManager : MonoBehaviour
     {
@@ -10,6 +9,18 @@ namespace OpenIt.Inputs
         public static InputManager Instance => _instance;
         
         private PlayerInput _currentPlayerInput;
+        private InputDevices _currentDevice;
+        private bool _isVisibleCursor;
+
+        private void OnEnable()
+        {
+            InputSystem.onBeforeUpdate += OnInputDeviceChanged;
+        }
+
+        private void OnDisable()
+        {
+            InputSystem.onBeforeUpdate -= OnInputDeviceChanged;
+        }
 
         private void Awake()
         {
@@ -26,6 +37,21 @@ namespace OpenIt.Inputs
             _instance._currentPlayerInput = FindFirstObjectByType<PlayerInput>();
         }
 
+        private void OnInputDeviceChanged()
+        {
+            switch (_currentPlayerInput.currentControlScheme)
+            {
+                case "Keyboard":
+                    Cursor.visible = _isVisibleCursor;
+                    Cursor.lockState = _isVisibleCursor ? CursorLockMode.None : CursorLockMode.Locked;
+                    break;
+                case "Gamepad":
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    break;
+            }
+        }
+
         public void ChangeActionMap(string mappingName)
         {
             if (_currentPlayerInput.actions.FindActionMap(mappingName) != null)
@@ -36,6 +62,11 @@ namespace OpenIt.Inputs
             {
                 Debug.LogError($"No mapping found for {mappingName}.");
             }
+        }
+
+        public void SetCusorVisibility(bool isVisibility)
+        {
+            _isVisibleCursor = isVisibility;
         }
     }
 }
