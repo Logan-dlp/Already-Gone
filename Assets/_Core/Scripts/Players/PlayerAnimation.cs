@@ -4,7 +4,7 @@ namespace AlreadyGone.Players
 {
     public class PlayerAnimation : MonoBehaviour
     {
-        [SerializeField] PlayerMovement _playerMovement;
+        [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private float _speedAnimation;
         
         private Animator _animator;
