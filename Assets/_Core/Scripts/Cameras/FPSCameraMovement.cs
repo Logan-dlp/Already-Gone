@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Cameras
+namespace AlreadyGone.Camera
 {
     public class FPSCameraMovement : MonoBehaviour
     {

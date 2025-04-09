@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OpenIt.Players
+namespace AlreadyGone.Players
 {
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private float _speedMovement;
+        public float SpeedMovement => _speedMovement;
+        
+        private Vector3 _velocity;
+        public Vector3 Velocity => _velocity;
+        
         [SerializeField] private float _gravityDistanceDetection;
         
         private CharacterController _characterController;
-
-        private Vector3 _velocity;
         private Vector2 _targetMovement;
 
         private void Awake()
