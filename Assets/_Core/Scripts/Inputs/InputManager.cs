@@ -7,6 +7,9 @@ namespace AlreadyGone.Inputs
     {
         private static InputManager _instance;
         public static InputManager Instance => _instance;
+
+        private bool _isActiveInput;
+        public bool IsActiveInput => _isActiveInput;
         
         private PlayerInput _currentPlayerInput;
         private InputDevices _currentDevice;
@@ -35,6 +38,7 @@ namespace AlreadyGone.Inputs
             }
             
             _instance._currentPlayerInput = FindFirstObjectByType<PlayerInput>();
+            EnableInput();
         }
 
         private void OnInputDeviceChanged()
@@ -67,6 +71,18 @@ namespace AlreadyGone.Inputs
         public void SetCusorVisibility(bool isVisibility)
         {
             _isVisibleCursor = isVisibility;
+        }
+
+        public void EnableInput()
+        {
+            _currentPlayerInput.ActivateInput();
+            _isActiveInput = true;
+        }
+
+        public void DisableInput()
+        {
+            _currentPlayerInput.DeactivateInput();
+            _isActiveInput = false;
         }
     }
 }

@@ -4,32 +4,41 @@ using UnityEngine.InputSystem;
 
 namespace AlreadyGone.Interactions
 {
+    using Inputs;
+    
     public class Interaction : MonoBehaviour
     {
         [SerializeField] private float _interactionDistance;
-        [SerializeField] private UnityEvent _onInteraction;
         
         private IInteractible _currentInteractible;
         
         private void Update()
         {
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _interactionDistance))
+            if (InputManager.Instance.IsActiveInput)
             {
-                if (hit.collider.TryGetComponent(out IInteractible interactible))
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _interactionDistance))
                 {
-                    if (_currentInteractible != null)
+                    if (hit.collider.TryGetComponent(out IInteractible interactible))
                     {
-                        if (_currentInteractible != interactible)
+                        if (_currentInteractible != null)
+                        {
+                            if (_currentInteractible != interactible)
+                            {
+                                interactible.VisualizeInteraction();
+                                _currentInteractible.HideInteraction();
+                                _currentInteractible = interactible;
+                            }
+                        }
+                        else
                         {
                             interactible.VisualizeInteraction();
-                            _currentInteractible.HideInteraction();
                             _currentInteractible = interactible;
                         }
                     }
-                    else
+                    else if (_currentInteractible != null)
                     {
-                        interactible.VisualizeInteraction();
-                        _currentInteractible = interactible;
+                        _currentInteractible.HideInteraction();
+                        _currentInteractible = null;
                     }
                 }
                 else if (_currentInteractible != null)
@@ -47,12 +56,11 @@ namespace AlreadyGone.Interactions
 
         public void Interact(InputAction.CallbackContext ctx)
         {
-            if (ctx.started)
+            if (ctx.started && InputManager.Instance.IsActiveInput)
             {
                 if (_currentInteractible != null)
                 {
                     _currentInteractible.Interact();
-                    _onInteraction?.Invoke();
                 }
             }
         }
