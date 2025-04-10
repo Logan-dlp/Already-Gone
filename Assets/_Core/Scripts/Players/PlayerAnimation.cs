@@ -23,5 +23,10 @@ namespace AlreadyGone.Players
             _animator.SetFloat("PosX", animationVelocity.x);
             _animator.SetFloat("PosY", animationVelocity.y);
         }
+
+        public void PlayStateAnimation(string stateName)
+        {
+            _animator.Play(stateName);
+        }
     }
 }
