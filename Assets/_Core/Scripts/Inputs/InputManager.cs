@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace AlreadyGone.Inputs
@@ -29,16 +31,16 @@ namespace AlreadyGone.Inputs
         {
             if (_instance != null && _instance != this)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
             else
             {
                 _instance = this;
-                DontDestroyOnLoad(this.gameObject);
+                DontDestroyOnLoad(gameObject);
             }
             
             _instance._currentPlayerInput = FindFirstObjectByType<PlayerInput>();
-            EnableInput();
+            SetCursorVisibility(_currentPlayerInput.currentActionMap.name == "UI");
         }
 
         private void OnInputDeviceChanged()
@@ -46,10 +48,14 @@ namespace AlreadyGone.Inputs
             switch (_currentPlayerInput.currentControlScheme)
             {
                 case "Keyboard":
+                    EventSystem.current.SetSelectedGameObject(null);
                     Cursor.visible = _isVisibleCursor;
                     Cursor.lockState = _isVisibleCursor ? CursorLockMode.None : CursorLockMode.Locked;
                     break;
                 case "Gamepad":
+                    if (EventSystem.current.currentSelectedGameObject == null)
+                        EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
+                    
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
                     break;
@@ -68,7 +74,7 @@ namespace AlreadyGone.Inputs
             }
         }
 
-        public void SetCusorVisibility(bool isVisibility)
+        public void SetCursorVisibility(bool isVisibility)
         {
             _isVisibleCursor = isVisibility;
         }
