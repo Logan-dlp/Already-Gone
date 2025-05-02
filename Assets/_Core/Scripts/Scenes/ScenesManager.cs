@@ -25,5 +25,10 @@ namespace AlreadyGone.Scenes
         {
             SceneManager.LoadScene(sceneName);
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }

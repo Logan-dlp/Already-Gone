@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 namespace AlreadyGone.Inputs
 {
+    using Extensions;
+    
     public class InputManager : MonoBehaviour
     {
         private static InputManager _instance;
@@ -18,12 +20,12 @@ namespace AlreadyGone.Inputs
 
         private void OnEnable()
         {
-            InputSystem.onBeforeUpdate += OnInputDeviceChanged;
+            InputSystem.onBeforeUpdate += UpdateCursorVisibility;
         }
 
         private void OnDisable()
         {
-            InputSystem.onBeforeUpdate -= OnInputDeviceChanged;
+            InputSystem.onBeforeUpdate -= UpdateCursorVisibility;
         }
 
         private void Awake()
@@ -43,23 +45,26 @@ namespace AlreadyGone.Inputs
             _instance.SetCursorVisibility(_instance._currentPlayerInput.currentActionMap.name == "UI");
         }
 
-        private void OnInputDeviceChanged()
+        private void UpdateCursorVisibility()
         {
-            switch (_currentPlayerInput.currentControlScheme)
+            if (_isVisibleCursor)
             {
-                case "Keyboard":
-                    EventSystem.current.SetSelectedGameObject(null);
+                switch (_currentPlayerInput.currentControlScheme)
+                {
+                    case "Keyboard":
+                        EventSystem.current.SetSelectedGameObject(null);
                     
-                    Cursor.visible = _isVisibleCursor;
-                    Cursor.lockState = _isVisibleCursor ? CursorLockMode.None : CursorLockMode.Locked;
-                    break;
-                case "Gamepad":
-                    if (EventSystem.current.currentSelectedGameObject == null)
-                        EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
+                        Cursor.visible = _isVisibleCursor;
+                        Cursor.lockState = _isVisibleCursor ? CursorLockMode.None : CursorLockMode.Locked;
+                        break;
+                    case "Gamepad":
+                        if (EventSystem.current.currentSelectedGameObject == null)
+                            EventSystem.current.SetSelectedGameObject(EventSystem.current.GetFirstActiveGameObjectSelectable());
                     
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    break;
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        break;
+                }
             }
         }
 
