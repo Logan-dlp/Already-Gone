@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace AlreadyGone.Interactions
 {
     public interface IInteractible
