@@ -54,8 +54,8 @@ namespace AlreadyGone.Inputs
                     case "Keyboard":
                         EventSystem.current.SetSelectedGameObject(null);
                     
-                        Cursor.visible = _isVisibleCursor;
-                        Cursor.lockState = _isVisibleCursor ? CursorLockMode.None : CursorLockMode.Locked;
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
                         break;
                     case "Gamepad":
                         if (EventSystem.current.currentSelectedGameObject == null)
@@ -65,6 +65,11 @@ namespace AlreadyGone.Inputs
                         Cursor.lockState = CursorLockMode.Locked;
                         break;
                 }
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
 

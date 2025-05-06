@@ -20,6 +20,11 @@ namespace AlreadyGone.Scenes
                 DontDestroyOnLoad(gameObject);
             }
         }
+        
+        public void PauseGame(bool isPaused)
+        {
+            Time.timeScale = isPaused ? 0 : 1;
+        }
 
         public void LoadScene(string sceneName)
         {

@@ -8,7 +8,7 @@ namespace AlreadyGone.Extensions
     {
         public static GameObject GetFirstActiveGameObjectSelectable(this EventSystem eventSystem)
         {
-            if (eventSystem.firstSelectedGameObject.activeInHierarchy)
+            if (eventSystem.firstSelectedGameObject != null && eventSystem.firstSelectedGameObject.activeInHierarchy)
             {
                 return eventSystem.firstSelectedGameObject;
             }
