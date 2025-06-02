@@ -1,6 +1,6 @@
 namespace AlreadyGone.Interactions
 {
-    public interface IInteractible
+    public interface IInteractable
     {
         public void VisualizeInteraction();
         public void HideInteraction();

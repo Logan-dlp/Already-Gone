@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace AlreadyGone.Extensions
 {
@@ -23,6 +23,11 @@ namespace AlreadyGone.Extensions
         
             Debug.LogError("I didn't find any selectable element !");
             return null;
+        }
+
+        public static void SetFirstGameObjectSelectable(this EventSystem eventSystem)
+        {
+            eventSystem.SetSelectedGameObject(eventSystem.GetFirstActiveGameObjectSelectable());
         }
     }
 }

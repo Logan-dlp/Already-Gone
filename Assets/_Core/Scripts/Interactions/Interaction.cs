@@ -9,7 +9,7 @@ namespace AlreadyGone.Interactions
     {
         [SerializeField] private float _interactionDistance;
         
-        private IInteractible _currentInteractible;
+        private IInteractable _currentInteractable;
         
         private void Update()
         {
@@ -17,39 +17,39 @@ namespace AlreadyGone.Interactions
             {
                 if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, _interactionDistance))
                 {
-                    if (hit.collider.TryGetComponent(out IInteractible interactible))
+                    if (hit.collider.TryGetComponent(out IInteractable interactable))
                     {
-                        if (_currentInteractible != null)
+                        if (_currentInteractable != null)
                         {
-                            if (_currentInteractible != interactible)
+                            if (_currentInteractable != interactable)
                             {
-                                interactible.VisualizeInteraction();
-                                _currentInteractible.HideInteraction();
-                                _currentInteractible = interactible;
+                                interactable.VisualizeInteraction();
+                                _currentInteractable.HideInteraction();
+                                _currentInteractable = interactable;
                             }
                         }
                         else
                         {
-                            interactible.VisualizeInteraction();
-                            _currentInteractible = interactible;
+                            interactable.VisualizeInteraction();
+                            _currentInteractable = interactable;
                         }
                     }
-                    else if (_currentInteractible != null)
+                    else if (_currentInteractable != null)
                     {
-                        _currentInteractible.HideInteraction();
-                        _currentInteractible = null;
+                        _currentInteractable.HideInteraction();
+                        _currentInteractable = null;
                     }
                 }
-                else if (_currentInteractible != null)
+                else if (_currentInteractable != null)
                 {
-                    _currentInteractible.HideInteraction();
-                    _currentInteractible = null;
+                    _currentInteractable.HideInteraction();
+                    _currentInteractable = null;
                 }
             }
-            else if (_currentInteractible != null)
+            else if (_currentInteractable != null)
             {
-                _currentInteractible.HideInteraction();
-                _currentInteractible = null;
+                _currentInteractable.HideInteraction();
+                _currentInteractable = null;
             }
         }
 
@@ -57,9 +57,9 @@ namespace AlreadyGone.Interactions
         {
             if (ctx.started && InputManager.Instance.IsActiveInput)
             {
-                if (_currentInteractible != null)
+                if (_currentInteractable != null)
                 {
-                    _currentInteractible.Interact();
+                    _currentInteractable.Interact();
                 }
             }
         }

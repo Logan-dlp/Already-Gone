@@ -4,7 +4,7 @@ namespace AlreadyGone.Interactions.Interactibles
 {
     using Players;
     
-    public class InteractionTestWithColor : MonoBehaviour, IInteractible
+    public class InteractionTestWithColor : MonoBehaviour, IInteractable
     {
         [SerializeField] private string _stateAnimationName;
         [SerializeField] private Color _baseColor;
