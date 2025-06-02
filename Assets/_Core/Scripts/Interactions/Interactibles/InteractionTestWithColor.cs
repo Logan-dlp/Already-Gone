@@ -1,8 +1,9 @@
 using UnityEngine;
 
-namespace AlreadyGone.Interactions.Interactibles
+namespace AlreadyGone.Interactions.Interactables
 {
     using Players;
+    using Players.Movements;
     
     public class InteractionTestWithColor : MonoBehaviour, IInteractable
     {
@@ -15,7 +16,7 @@ namespace AlreadyGone.Interactions.Interactibles
         private void Awake()
         {
             HideInteraction();
-            _playerObjectReference = FindFirstObjectByType<PlayerMovement>().gameObject;
+            _playerObjectReference = FindFirstObjectByType<PlayerMovementHandler>().gameObject;
         }
 
         public void VisualizeInteraction()
