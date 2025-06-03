@@ -204,10 +204,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 529735545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27ccf705a318864ca54cb796ade2f0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 613d900d999d426691f0105a134884c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivity: {x: 100, y: 100}
+  _sensitivity: 10
 --- !u!1 &1010598928
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,8 +713,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 529735548}
-        m_TargetAssemblyTypeName: Cameras.CameraMovement, Assembly-CSharp
-        m_MethodName: SetMovementDirection
+        m_TargetAssemblyTypeName: AlreadyGone.Camera.PlayerCamera.PlayerCameraHandler,
+          Assembly-CSharp
+        m_MethodName: SetDirection
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
