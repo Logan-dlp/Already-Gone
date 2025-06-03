@@ -33,7 +33,7 @@ namespace AlreadyGone.Interactions.Interactables
         {
             Debug.Log("Interacted");
             
-            if (_playerObjectReference.TryGetComponent(out PlayerAnimation playerAnimation))
+            if (_playerObjectReference.TryGetComponent(out PlayerAnimatorHandler playerAnimation))
             {
                 playerAnimation.PlayStateAnimation(_stateAnimationName);
             }
