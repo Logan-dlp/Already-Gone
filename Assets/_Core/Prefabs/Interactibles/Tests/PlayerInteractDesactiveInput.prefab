@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3250968814366925017}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.035940886, y: 0.46633816, z: 3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4ac73c95c87414b8ca79df280e33b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateAnimationName: PlayerInteractDesactiveInput
+  _interactionAnimation: 1
   _baseColor: {r: 0, g: 0, b: 0, a: 0}
   _interactColor: {r: 1, g: 0, b: 0, a: 0}

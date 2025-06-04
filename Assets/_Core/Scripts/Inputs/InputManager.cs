@@ -31,6 +31,7 @@ namespace AlreadyGone.Inputs
             
             _currentPlayerInput = FindFirstObjectByType<PlayerInput>();
             SetCursorVisibility(Instance._currentPlayerInput.currentActionMap.name == "UI");
+            EnableInput();
         }
 
         private void UpdateCursorVisibility()

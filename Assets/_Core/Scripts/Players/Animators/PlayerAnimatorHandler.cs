@@ -1,7 +1,9 @@
 using UnityEngine;
 
-namespace AlreadyGone.Players
+namespace AlreadyGone.Players.Animators
 {
+    using Animations;
+    
     public class PlayerAnimatorHandler : MonoBehaviour
     {
         private const string ANIMATOR_POSX_VARIABLE = "PosX";
@@ -20,9 +22,9 @@ namespace AlreadyGone.Players
             _animator.SetFloat(ANIMATOR_POSY_VARIABLE, direction.y);
         }
 
-        public void PlayStateAnimation(string stateName)
+        public void PlayStateAnimation(EAnimations animation)
         {
-            _animator.Play(stateName);
+            _animator.Play(animation.ToString());
         }
     }
 }

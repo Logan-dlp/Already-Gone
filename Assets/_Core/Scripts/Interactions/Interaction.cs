@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace AlreadyGone.Interactions
 {
     using Inputs;
+    using Animations;
     
     public class Interaction : MonoBehaviour
     {
         [SerializeField] private float _interactionDistance;
+        [Space]
+        [SerializeField] private UnityEvent<EAnimations> _onInteract;
         
         private IInteractable _currentInteractable;
         
@@ -60,6 +64,7 @@ namespace AlreadyGone.Interactions
                 if (_currentInteractable != null)
                 {
                     _currentInteractable.Interact();
+                    _onInteract?.Invoke(_currentInteractable.GetAnimation());
                 }
             }
         }
