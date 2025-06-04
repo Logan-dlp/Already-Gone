@@ -4,7 +4,7 @@ namespace AlreadyGone.Animations.Events
 {
     using Inputs;
     
-    public class DesactiveInputOnAnimationEvent : StateMachineBehaviour
+    public class DisableInputOnAnimationEvent : StateMachineBehaviour
     {
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

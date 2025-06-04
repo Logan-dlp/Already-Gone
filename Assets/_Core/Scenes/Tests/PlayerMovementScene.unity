@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613d900d999d426691f0105a134884c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivity: 10
+  _sensitivity: 40
 --- !u!1 &1010598928
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +841,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _gravityDistanceDetection: 1.01
+  _onMovementEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: cb8317d0b4ac58c40b669566b058e8fc, type: 2}
+        m_TargetAssemblyTypeName: AlreadyGone.DesignPattern.Observers.Typed.TypedMessage`1[[UnityEngine.Vector2,
+          UnityEngine
+        m_MethodName: Notify
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1955822575
 GameObject:
   m_ObjectHideFlags: 3
@@ -2292,6 +2308,7 @@ GameObject:
   - component: {fileID: 4699428033790839804}
   - component: {fileID: 5367279520593072456}
   - component: {fileID: 5367279520593072455}
+  - component: {fileID: 5367279520593072457}
   m_Layer: 0
   m_Name: Skin
   m_TagString: Untagged
@@ -2311,8 +2328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309c4bb31e50f5e4f93532ef8ae512a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerMovement: {fileID: 0}
-  _speedAnimation: 1.5
 --- !u!95 &5367279520593072456
 Animator:
   serializedVersion: 5
@@ -2334,6 +2349,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5367279520593072457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367279520593072454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf98cdb7a794af584484d841674edfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _messageArray:
+  - {fileID: 11400000, guid: cb8317d0b4ac58c40b669566b058e8fc, type: 2}
+  _callbacks:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5367279520593072455}
+        m_TargetAssemblyTypeName: AlreadyGone.Players.PlayerAnimatorHandler, Assembly-CSharp
+        m_MethodName: UpdateMovementAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &5396438421526005897
 Transform:
   m_ObjectHideFlags: 0
