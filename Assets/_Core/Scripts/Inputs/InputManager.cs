@@ -1,58 +1,64 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 namespace AlreadyGone.Inputs
 {
-    public class InputManager : MonoBehaviour
+    using Extensions;
+    using DesignPattern.Singletons;
+    
+    public class InputManager : MonoSingleton<InputManager>
     {
-        private static InputManager _instance;
-        public static InputManager Instance => _instance;
-
         private bool _isActiveInput;
         public bool IsActiveInput => _isActiveInput;
         
         private PlayerInput _currentPlayerInput;
-        private InputDevices _currentDevice;
         private bool _isVisibleCursor;
 
         private void OnEnable()
         {
-            InputSystem.onBeforeUpdate += OnInputDeviceChanged;
+            InputSystem.onBeforeUpdate += UpdateCursorVisibility;
         }
 
         private void OnDisable()
         {
-            InputSystem.onBeforeUpdate -= OnInputDeviceChanged;
+            InputSystem.onBeforeUpdate -= UpdateCursorVisibility;
         }
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (_instance != null && _instance != this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                _instance = this;
-                DontDestroyOnLoad(this.gameObject);
-            }
+            base.Awake();
             
-            _instance._currentPlayerInput = FindFirstObjectByType<PlayerInput>();
+            _currentPlayerInput = FindFirstObjectByType<PlayerInput>();
+            SetCursorVisibility(Instance._currentPlayerInput.currentActionMap.name == "UI");
             EnableInput();
         }
 
-        private void OnInputDeviceChanged()
+        private void UpdateCursorVisibility()
         {
-            switch (_currentPlayerInput.currentControlScheme)
+            if (_isVisibleCursor)
             {
-                case "Keyboard":
-                    Cursor.visible = _isVisibleCursor;
-                    Cursor.lockState = _isVisibleCursor ? CursorLockMode.None : CursorLockMode.Locked;
-                    break;
-                case "Gamepad":
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    break;
+                switch (_currentPlayerInput.currentControlScheme)
+                {
+                    case "Keyboard":
+                        EventSystem.current.SetSelectedGameObject(null);
+                    
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
+                        break;
+                    case "Gamepad":
+                        if (EventSystem.current.currentSelectedGameObject == null)
+                            EventSystem.current.SetFirstGameObjectSelectable();
+                    
+                        Cursor.visible = false;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        break;
+                }
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
 
@@ -68,7 +74,7 @@ namespace AlreadyGone.Inputs
             }
         }
 
-        public void SetCusorVisibility(bool isVisibility)
+        public void SetCursorVisibility(bool isVisibility)
         {
             _isVisibleCursor = isVisibility;
         }
