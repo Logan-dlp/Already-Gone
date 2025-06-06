@@ -1,12 +1,10 @@
 namespace AlreadyGone.Interactions
 {
+    using Broadcasts;
     using Animations;
     
-    public interface IInteractable
+    public interface IInteractable : IVisibility, IAnimate
     {
-        public EAnimations GetAnimation();
-        public void VisualizeInteraction();
-        public void HideInteraction();
         public void Interact();
     }
 }

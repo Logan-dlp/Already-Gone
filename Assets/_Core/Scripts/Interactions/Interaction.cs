@@ -6,12 +6,15 @@ namespace AlreadyGone.Interactions
 {
     using Inputs;
     using Animations;
+    using Collectibles;
     
     public class Interaction : MonoBehaviour
     {
         [SerializeField] private float _interactionDistance;
         [Space]
         [SerializeField] private UnityEvent<EAnimations> _onInteract;
+        [Space]
+        [SerializeField] private UnityEvent<ECollectible> _onCollect;
         
         private IInteractable _currentInteractable;
         
@@ -27,32 +30,32 @@ namespace AlreadyGone.Interactions
                         {
                             if (_currentInteractable != interactable)
                             {
-                                interactable.VisualizeInteraction();
-                                _currentInteractable.HideInteraction();
+                                interactable.Show();
+                                _currentInteractable.Hide();
                                 _currentInteractable = interactable;
                             }
                         }
                         else
                         {
-                            interactable.VisualizeInteraction();
+                            interactable.Show();
                             _currentInteractable = interactable;
                         }
                     }
                     else if (_currentInteractable != null)
                     {
-                        _currentInteractable.HideInteraction();
+                        _currentInteractable.Hide();
                         _currentInteractable = null;
                     }
                 }
                 else if (_currentInteractable != null)
                 {
-                    _currentInteractable.HideInteraction();
+                    _currentInteractable.Hide();
                     _currentInteractable = null;
                 }
             }
             else if (_currentInteractable != null)
             {
-                _currentInteractable.HideInteraction();
+                _currentInteractable.Hide();
                 _currentInteractable = null;
             }
         }
@@ -65,6 +68,11 @@ namespace AlreadyGone.Interactions
                 {
                     _currentInteractable.Interact();
                     _onInteract?.Invoke(_currentInteractable.GetAnimation());
+
+                    if (_currentInteractable is ICollector collectible)
+                    {
+                        _onCollect?.Invoke(collectible.Collect());
+                    }
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace AlreadyGone.Interactions.Interactable
 
         private void Awake()
         {
-            HideInteraction();
+            Hide();
         }
 
         public EAnimations GetAnimation()
@@ -20,12 +20,12 @@ namespace AlreadyGone.Interactions.Interactable
             return _interactionAnimation;
         }
 
-        public void VisualizeInteraction()
+        public void Show()
         {
             GetComponent<Renderer>().material.color = _interactColor;
         }
 
-        public void HideInteraction()
+        public void Hide()
         {
             GetComponent<Renderer>().material.color = _baseColor;
         }
